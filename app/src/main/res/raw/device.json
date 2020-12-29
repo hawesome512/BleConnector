@@ -1,0 +1,1241 @@
+{
+  "version": 1,
+  "update_time": "2020-07-23",
+  "author": "hawesome",
+  "log": "create this file and T7 Model,location is hex string(ignore 0x)",
+  "types": [
+    {
+      "name": "XST-7T",
+      "type": "T7",
+      "address": [
+        {
+          "location": "0000",
+          "items": [
+            "ID",
+            "Factory",
+            "PSH",
+            "PSL",
+            "PDH",
+            "PDL",
+            "BreakerH",
+            "BreakerL",
+            "In",
+            "Inm",
+            "Un",
+            "Fn",
+            "Controller",
+            "Version",
+            "Language"
+          ]
+        },
+        {
+          "location": "1000",
+          "items": [
+            "Status",
+            "OtherStatus"
+          ]
+        },
+        {
+          "location": "1100",
+          "items": [
+            "SystemError",
+            "PowerError1",
+            "PowerError2",
+            "PowerError3"
+          ]
+        },
+        {
+          "location": "1200",
+          "items": [
+            "Ua1",
+            "Ub1",
+            "Uc1",
+            "Uab1",
+            "Ubc1",
+            "Uca1",
+            "UunA1",
+            "UunB1",
+            "UunC1",
+            "UunMax1",
+            "F1",
+            "Phase1"
+          ]
+        },
+        {
+          "location": "1300",
+          "items": [
+            "Ua2",
+            "Ub2",
+            "Uc2",
+            "Uab2",
+            "Ubc2",
+            "Uca2",
+            "UunA2",
+            "UunB2",
+            "UunC2",
+            "UunMax2",
+            "F2",
+            "Phase2"
+          ]
+        },
+        {
+          "location": "2000",
+          "items": [
+            "CtrlMode",
+            "CtrlCode",
+            "Switch",
+            "OtherSwitch",
+            "Ul",
+            "Uo",
+            "UlR",
+            "UoR",
+            "Fl",
+            "Fo",
+            "FlR",
+            "FoReturn",
+            "Uun",
+            "UunR",
+            "DvU",
+            "DvF",
+            "DvP"
+          ]
+        },
+        {
+          "location": "2100",
+          "items": [
+            "QS1OffT",
+            "QS1OnT",
+            "QS2OffT",
+            "QS2OnT",
+            "QS3OffT",
+            "QS3OnT",
+            "QTOffT",
+            "QTOnT",
+            "GenOffT",
+            "GenOnT"
+          ]
+        },
+        {
+          "location": "2200",
+          "items": [
+            "DI1",
+            "DI2",
+            "DI3",
+            "UnW",
+            "FnW",
+            "BreakerHW"
+          ]
+        },
+        {
+          "location": "3000",
+          "items": [
+            "EventLog",
+            "TrsfLog",
+            "AlarmLog"
+          ]
+        },
+        {
+          "location": "4000",
+          "items": [
+            "Comm",
+            "Protocol",
+            "Address",
+            "Baudrate",
+            "Parity",
+            "StopBit",
+            "LoraWorkNum",
+            "LoraTransAddr",
+            "LoraDeviceID"
+          ]
+        },
+        {
+          "location": "5000",
+          "items": [
+            "FarCtrl"
+          ]
+        },
+        {
+          "location": "6000",
+          "items": [
+            "TrsfTimeH",
+            "TrsfTimeM",
+            "TrsfTimeL",
+            "TrsfBreaker",
+            "TrsfInfo",
+            "TrsfError",
+            "TrsfThreshold",
+            "TrsfUA1",
+            "TrsfUB1",
+            "TrsfUC1",
+            "TrsfF1",
+            "TrsfPhase1",
+            "TrsfUun1",
+            "TrsfUA2",
+            "TrsfUB2",
+            "TrsfUC2",
+            "TrsfF2",
+            "TrsfPhase2",
+            "TrsfUun2",
+            "TrsfUA3",
+            "TrsfUB3",
+            "TrsfUC3",
+            "TrsfF3",
+            "TrsfPhase3",
+            "TrsfUun3"
+          ],
+          "log": 50
+        },
+        {
+          "location": "7000",
+          "items": [
+            "AlarmTimeH",
+            "AlarmTimeM",
+            "AlarmTimeL",
+            "AlarmInfo"
+          ],
+          "log": 50
+        },
+        {
+          "location": "8000",
+          "items": [
+            "EventTimeH",
+            "EventTimeM",
+            "EventTimeL",
+            "EventInfo",
+            "EventStart",
+            "EventStop"
+          ],
+          "log": 150
+        },
+        {
+          "location": "A000",
+          "items": [
+            "TimeYM",
+            "TimeDH",
+            "TimeMS"
+          ]
+        }
+      ],
+      "authority": [
+        "CtrlMode/9/0/local/1/remote",
+        "CtrlCode/%04X"
+      ],
+      "pages": [
+        {
+          "title": "realtime",
+          "addresses": [
+            "0000",
+            "2000"
+          ],
+          "refresh": [
+            "1000",
+            "1100",
+            "1200",
+            "1300"
+          ],
+          "content": [
+            {
+              "name": "Status",
+              "tags": [
+                "Status"
+              ],
+              "display": "ATSStatus",
+              "section": "Status",
+              "items": [
+                "1normal/1fault",
+                "2normal/2fault",
+                "",
+                "1off/1on",
+                "2off/2on",
+                "",
+                "tieoff/tieon",
+                "1trip",
+                "2trip",
+                "",
+                "tietrip"
+              ],
+              "child": [
+                "WorkMode",
+                "SystemError",
+                "PowerError"
+              ]
+            },
+            {
+              "name": "Source1",
+              "tags": [
+                "Ua1",
+                "Ub1",
+                "Uc1"
+              ],
+              "display": "bar",
+              "items": [
+                "0",
+                "0.01*Un*Ul/yellow",
+                "Un/green",
+                "0.01*Un*Uo/red",
+                "1.25*Un"
+              ],
+              "section": "Source1",
+              "child": [
+                "LineVoltage1",
+                "Uun1",
+                "UunMax1",
+                "F1",
+                "Phase1"
+              ]
+            },
+            {
+              "name": "Source2",
+              "tags": [
+                "Ua2",
+                "Ub2",
+                "Uc2"
+              ],
+              "display": "bar",
+              "items": [
+                "0",
+                "0.01*Un*Ul/yellow",
+                "Un/green",
+                "0.01*Un*Uo/red",
+                "1.25*Un"
+              ],
+              "section": "Source2",
+              "child": [
+                "LineVoltage2",
+                "Uun2",
+                "UunMax2",
+                "F2",
+                "Phase2"
+              ]
+            },
+            {
+              "name": "WorkMode",
+              "tags": [
+                "CtrlMode"
+              ],
+              "display": "ATSMode",
+              "secondary": true
+            },
+            {
+              "name": "SystemError",
+              "tags": [
+                "SystemError"
+              ],
+              "display": "bit",
+              "items": [
+                "generator",
+                "allPower",
+                "action",
+                "trip",
+                "parallel"
+              ],
+              "secondary": true
+            },
+            {
+              "name": "PowerError",
+              "tags": [
+                "PowerError1",
+                "PowerError2"
+              ],
+              "display": "bit",
+              "items": [
+                "openPhase",
+                "noVoltage",
+                "underVoltage",
+                "overVoltage",
+                "underFrequency",
+                "overFrequency",
+                "unblance",
+                "reversePhase"
+              ],
+              "secondary": true
+            },
+            {
+              "name": "LineVoltage1",
+              "tags": [
+                "Uab1",
+                "Ubc1",
+                "Uca1"
+              ],
+              "display": "bar",
+              "section": "LineVoltage",
+              "secondary": true
+            },
+            {
+              "name": "Uun1",
+              "tags": [
+                "UunA1",
+                "UunB1",
+                "UunC1"
+              ],
+              "display": "list",
+              "unit": "0.1",
+              "section": "VoltageUnblance",
+              "secondary": true
+            },
+            {
+              "name": "UunMax1",
+              "tags": [
+                "UunMax1"
+              ],
+              "display": "range",
+              "items": [
+                "0",
+                "green",
+                "UunR",
+                "red",
+                "Uun"
+              ],
+              "unit": "0.1",
+              "secondary": true
+            },
+            {
+              "name": "F1",
+              "tags": [
+                "F1"
+              ],
+              "display": "range",
+              "items": [
+                "0.01*Fn*Fl",
+                "red",
+                "0.01*Fn*FlR",
+                "green",
+                "Fn",
+                "green",
+                "0.01*Fn*FoReturn",
+                "red",
+                "0.01*Fn*Fo"
+              ],
+              "unit": "0.01",
+              "section": "Other",
+              "secondary": true
+            },
+            {
+              "name": "Phase1",
+              "tags": [
+                "Phase1"
+              ],
+              "display": "list",
+              "items": [
+                "0/PHopen",
+                "70/PHabc",
+                "73/PHacb"
+              ],
+              "secondary": true
+            },
+            {
+              "name": "LineVoltage2",
+              "tags": [
+                "Uab2",
+                "Ubc2",
+                "Uca2"
+              ],
+              "display": "bar",
+              "section": "LineVoltage",
+              "secondary": true
+            },
+            {
+              "name": "Uun2",
+              "tags": [
+                "UunA2",
+                "UunB2",
+                "UunC2"
+              ],
+              "display": "list",
+              "unit": "0.1",
+              "section": "VoltageUnblance",
+              "secondary": true
+            },
+            {
+              "name": "UunMax2",
+              "tags": [
+                "UunMax2"
+              ],
+              "display": "range",
+              "items": [
+                "0",
+                "green",
+                "UunR",
+                "red",
+                "Uun"
+              ],
+              "unit": "0.1",
+              "secondary": true
+            },
+            {
+              "name": "F2",
+              "tags": [
+                "F2"
+              ],
+              "display": "range",
+              "items": [
+                "0.01*Fn*Fl",
+                "red",
+                "0.01*Fn*FlR",
+                "green",
+                "Fn",
+                "green",
+                "0.01*Fn*FoReturn",
+                "red",
+                "0.01*Fn*Fo"
+              ],
+              "unit": "0.01",
+              "section": "Other",
+              "secondary": true
+            },
+            {
+              "name": "Phase2",
+              "tags": [
+                "Phase2"
+              ],
+              "display": "list",
+              "items": [
+                "0/PHopen",
+                "70/PHabc",
+                "73/PHacb"
+              ],
+              "secondary": true
+            },
+            {
+              "name": "Un",
+              "tags": [
+                "Un"
+              ],
+              "display": "list",
+              "items": [
+                "400/230",
+                "415/240"
+              ],
+              "secondary": true
+            },
+            {
+              "name": "Fn",
+              "tags": [
+                "Fn"
+              ],
+              "display": "list",
+              "secondary": true
+            }
+          ]
+        },
+        {
+          "title": "parameter",
+          "refresh": [
+            "2000",
+            "2100",
+            "2200",
+            "4000"
+          ],
+          "content": [
+            {
+              "name": "SystemConfig",
+              "display": "list",
+              "child": [
+                "UnW",
+                "FnW",
+                "SwitchingType",
+                "PowerSupply",
+                "LinePriority"
+              ],
+              "section": "SystemConfig"
+            },
+            {
+              "name": "DeviceConfig",
+              "display": "list",
+              "child": [
+                "SwitchingCtrl",
+                "SwitchingMode",
+                "DI1",
+                "DI2",
+                "DI3",
+                "CommMode",
+                "CtrlMode",
+                "Protocol",
+                "BusAddress",
+                "Parity",
+                "StopBit",
+                "Baudrate",
+                "LoraTransAddr",
+                "LoraDeviceID",
+                "LoraWorkNum"
+              ],
+              "section": "DeviceConfig"
+            },
+            {
+              "name": "Ul",
+              "tags": [
+                "Ul"
+              ],
+              "display": "slider",
+              "items": [
+                "step",
+                "75",
+                "1",
+                "95"
+              ],
+              "section": "VoltageTreshhold"
+            },
+            {
+              "name": "UlR",
+              "tags": [
+                "UlR"
+              ],
+              "display": "slider",
+              "items": [
+                "step",
+                "77",
+                "1",
+                "97"
+              ]
+            },
+            {
+              "name": "Uo",
+              "tags": [
+                "Uo"
+              ],
+              "display": "slider",
+              "items": [
+                "step",
+                "105",
+                "1",
+                "125"
+              ]
+            },
+            {
+              "name": "UoR",
+              "tags": [
+                "UoR"
+              ],
+              "display": "slider",
+              "items": [
+                "step",
+                "103",
+                "1",
+                "123"
+              ]
+            },
+            {
+              "name": "FreqSwitch",
+              "tags": [
+                "Switch"
+              ],
+              "display": "onoff",
+              "items": [
+                "0"
+              ],
+              "section": "FrequencyTreshhold"
+            },
+            {
+              "name": "Fl",
+              "tags": [
+                "Fl"
+              ],
+              "display": "slider",
+              "items": [
+                "step",
+                "90",
+                "0.5",
+                "99"
+              ],
+              "unit": "0.1"
+            },
+            {
+              "name": "FlR",
+              "tags": [
+                "FlR"
+              ],
+              "display": "slider",
+              "items": [
+                "step",
+                "90.5",
+                "0.5",
+                "99.5"
+              ],
+              "unit": "0.1"
+            },
+            {
+              "name": "Fo",
+              "tags": [
+                "Fo"
+              ],
+              "display": "slider",
+              "items": [
+                "step",
+                "101",
+                "0.5",
+                "110"
+              ],
+              "unit": "0.1"
+            },
+            {
+              "name": "FoReturn",
+              "tags": [
+                "FoReturn"
+              ],
+              "display": "slider",
+              "items": [
+                "step",
+                "100.5",
+                "0.5",
+                "109.5"
+              ],
+              "unit": "0.1"
+            },
+            {
+              "name": "UunSwitch",
+              "tags": [
+                "Switch"
+              ],
+              "display": "onoff",
+              "items": [
+                "2"
+              ],
+              "section": "UnblanceTreshhold"
+            },
+            {
+              "name": "Uun",
+              "tags": [
+                "Uun"
+              ],
+              "display": "slider",
+              "items": [
+                "step",
+                "10",
+                "1",
+                "30"
+              ]
+            },
+            {
+              "name": "UunR",
+              "tags": [
+                "UunR"
+              ],
+              "display": "slider",
+              "items": [
+                "step",
+                "5",
+                "1",
+                "25"
+              ]
+            },
+            {
+              "name": "PhaseSwitch",
+              "tags": [
+                "Switch"
+              ],
+              "display": "onoff",
+              "items": [
+                "1"
+              ],
+              "section": "PhaseProtect"
+            },
+            {
+              "name": "QS1OffT",
+              "tags": [
+                "QS1OffT"
+              ],
+              "display": "slider",
+              "items": [
+                "step",
+                "0",
+                "1",
+                "600"
+              ],
+              "section": "Delay"
+            },
+            {
+              "name": "QS1OnT",
+              "tags": [
+                "QS1OnT"
+              ],
+              "display": "slider",
+              "items": [
+                "step",
+                "0",
+                "1",
+                "600"
+              ]
+            },
+            {
+              "name": "QS2OffT",
+              "tags": [
+                "QS2OffT"
+              ],
+              "display": "slider",
+              "items": [
+                "step",
+                "0",
+                "1",
+                "600"
+              ]
+            },
+            {
+              "name": "QS2OnT",
+              "tags": [
+                "QS2OnT"
+              ],
+              "display": "slider",
+              "items": [
+                "step",
+                "0",
+                "1",
+                "600"
+              ]
+            },
+            {
+              "name": "QTOffT",
+              "tags": [
+                "QTOffT"
+              ],
+              "display": "slider",
+              "items": [
+                "step",
+                "0",
+                "1",
+                "600"
+              ]
+            },
+            {
+              "name": "QTOnT",
+              "tags": [
+                "QTOnT"
+              ],
+              "display": "slider",
+              "items": [
+                "step",
+                "0",
+                "1",
+                "600"
+              ]
+            },
+            {
+              "name": "DvU",
+              "tags": [
+                "DvU"
+              ],
+              "display": "slider",
+              "items": [
+                "step",
+                "0",
+                "1",
+                "20"
+              ],
+              "section": "ParallelCondition"
+            },
+            {
+              "name": "DvF",
+              "tags": [
+                "DvF"
+              ],
+              "display": "slider",
+              "items": [
+                "step",
+                "0.1",
+                "0.1",
+                "1"
+              ],
+              "unit": "0.1"
+            },
+            {
+              "name": "DvP",
+              "tags": [
+                "DvP"
+              ],
+              "display": "slider",
+              "items": [
+                "step",
+                "5",
+                "1",
+                "20"
+              ]
+            },
+            {
+              "name": "UnW",
+              "tags": [
+                "UnW"
+              ],
+              "display": "segment",
+              "items": [
+                "-1",
+                "0",
+                "400/Un400",
+                "415/Un415"
+              ],
+              "secondary": true
+            },
+            {
+              "name": "FnW",
+              "tags": [
+                "FnW"
+              ],
+              "display": "segment",
+              "items": [
+                "-1",
+                "0",
+                "50/50",
+                "60/60"
+              ],
+              "secondary": true
+            },
+            {
+              "name": "SwitchingType",
+              "tags": [
+                "BreakerHW"
+              ],
+              "display": "segment",
+              "items": [
+                "-1",
+                "0",
+                "3/3P",
+                "4/3P+N"
+              ],
+              "secondary": true
+            },
+            {
+              "name": "PowerSupply",
+              "tags": [
+                "CtrlMode"
+              ],
+              "display": "segment",
+              "items": [
+                "4",
+                "3",
+                "0/PSgg"
+              ],
+              "secondary": true
+            },
+            {
+              "name": "LinePriority",
+              "tags": [
+                "CtrlMode"
+              ],
+              "display": "segment",
+              "items": [
+                "0",
+                "2",
+                "0/LP1",
+                "1/LP2",
+                "3/LP12"
+              ],
+              "secondary": true
+            },
+            {
+              "name": "SwitchingCtrl",
+              "tags": [
+                "CtrlMode"
+              ],
+              "display": "segment",
+              "items": [
+                "8",
+                "1",
+                "0/SCauto",
+                "1/SCmanual"
+              ],
+              "secondary": true
+            },
+            {
+              "name": "SwitchingMode",
+              "tags": [
+                "CtrlMode"
+              ],
+              "display": "segment",
+              "items": [
+                "7",
+                "1",
+                "0/SMautoBack",
+                "1/SMmanualBack"
+              ],
+              "secondary": true
+            },
+            {
+              "name": "DI1",
+              "tags": [
+                "DI1"
+              ],
+              "display": "item",
+              "items": [
+                "0/OOO",
+                "1/OOI",
+                "3/OII",
+                "4/IOO",
+                "5/IOI",
+                "6/IIO",
+                "256/Fire"
+              ],
+              "secondary": true
+            },
+            {
+              "name": "DI2",
+              "tags": [
+                "DI2"
+              ],
+              "display": "item",
+              "items": [
+                "0/OOO",
+                "1/OOI",
+                "3/OII",
+                "4/IOO",
+                "5/IOI",
+                "6/IIO",
+                "256/Fire"
+              ],
+              "secondary": true
+            },
+            {
+              "name": "DI3",
+              "tags": [
+                "DI3"
+              ],
+              "display": "item",
+              "items": [
+                "0/OOO",
+                "1/OOI",
+                "3/OII",
+                "4/IOO",
+                "5/IOI",
+                "6/IIO",
+                "256/Fire"
+              ],
+              "secondary": true
+            },
+            {
+              "name": "CommMode",
+              "tags": [
+                "Comm"
+              ],
+              "display": "list",
+              "items": [
+                "82/RS485",
+                "76/LoRa"
+              ],
+              "section": "Comm",
+              "secondary": true
+            },
+            {
+              "name": "CtrlMode",
+              "tags": [
+                "CtrlMode"
+              ],
+              "display": "bit",
+              "items": [
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "Local/Remote"
+              ],
+              "secondary": true
+            },
+            {
+              "name": "Protocol",
+              "tags": [
+                "Protocol"
+              ],
+              "display": "list",
+              "items": [
+                "77/Modbus",
+                "80/Profibus"
+              ],
+              "secondary": true
+            },
+            {
+              "name": "BusAddress",
+              "tags": [
+                "Address"
+              ],
+              "display": "list",
+              "secondary": true
+            },
+            {
+              "name": "Parity",
+              "tags": [
+                "Parity"
+              ],
+              "display": "list",
+              "items": [
+                "0/None",
+                "1/Odd",
+                "2/Even"
+              ],
+              "section": "RS485",
+              "secondary": true
+            },
+            {
+              "name": "StopBit",
+              "tags": [
+                "StopBit"
+              ],
+              "display": "list",
+              "secondary": true
+            },
+            {
+              "name": "Baudrate",
+              "tags": [
+                "Baudrate"
+              ],
+              "display": "list",
+              "secondary": true
+            },
+            {
+              "name": "LoraTransAddr",
+              "tags": [
+                "LoraTransAddr"
+              ],
+              "display": "list",
+              "section": "LoRa",
+              "secondary": true
+            },
+            {
+              "name": "LoraDeviceID",
+              "tags": [
+                "LoraDeviceID"
+              ],
+              "display": "list",
+              "secondary": true
+            },
+            {
+              "name": "LoraWorkNum",
+              "tags": [
+                "LoraWorkNum"
+              ],
+              "display": "list",
+              "secondary": true
+            }
+          ]
+        },
+        {
+          "title": "control",
+          "addresses": [
+            "2000"
+          ],
+          "refresh": [
+            "1000"
+          ],
+          "content": [
+            {
+              "name": "Status",
+              "tags": [
+                "Status"
+              ],
+              "display": "ATSStatus",
+              "section": "Status",
+              "items": [
+                "1normal/1fault",
+                "2normal/2fault",
+                "",
+                "1off/1on",
+                "2off/2on",
+                "",
+                "tieoff/tieon",
+                "1trip",
+                "2trip",
+                "",
+                "tietrip"
+              ]
+            },
+            {
+              "name": "FarCtrl1",
+              "tags": [
+                "FarCtrl"
+              ],
+              "display": "button",
+              "items": [
+                "IOI/5/blue",
+                "IIO/6/blue",
+                "OII/3/blue"
+              ],
+              "section": "FarCtrl"
+            },
+            {
+              "name": "FarCtrl2",
+              "tags": [
+                "FarCtrl"
+              ],
+              "display": "button",
+              "items": [
+                "IOO/4/blue",
+                "OOI/1/blue",
+                "OOO/0/blue"
+              ]
+            }
+          ]
+        },
+        {
+          "title": "log",
+          "addresses": [
+            "3000"
+          ],
+          "content": [
+            {
+              "name": "TrsfLog",
+              "tags": [
+                "TrsfLog"
+              ],
+              "display": "log",
+              "items": [
+                "6000"
+              ]
+            },
+            {
+              "name": "EventLog",
+              "tags": [
+                "EventLog"
+              ],
+              "display": "log",
+              "items": [
+                "8000"
+              ]
+            },
+            {
+              "name": "AlarmLog",
+              "tags": [
+                "AlarmLog"
+              ],
+              "display": "log",
+              "items": [
+                "7000"
+              ]
+            }
+          ]
+        },
+        {
+          "title": "ota",
+          "addresses": [
+            "0000",
+            "2000"
+          ],
+          "refresh": [
+            "A000"
+          ],
+          "content": [
+            {
+              "name": "Time",
+              "tags": [
+                "TimeYM",
+                "TimeDH",
+                "TimeMS"
+              ],
+              "display": "time"
+            },
+            {
+              "name": "Version",
+              "tags": [
+                "Version"
+              ],
+              "display": "version"
+            },
+            {
+              "name": "OTA",
+              "display": "ota"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

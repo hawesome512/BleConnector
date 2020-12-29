@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/realtime"
+        android:icon="@drawable/realtime"
+        android:title="@string/realtime" />
+    <item
+        android:id="@+id/parameter"
+        android:icon="@drawable/parameter"
+        android:title="@string/parameter" />
+    <item
+        android:id="@+id/control"
+        android:icon="@drawable/control"
+        android:title="@string/control" />
+    <item
+        android:id="@+id/log"
+        android:icon="@drawable/log"
+        android:title="@string/log" />
+    <item
+        android:id="@+id/ota"
+        android:icon="@drawable/ota"
+        android:title="@string/ota" />
+</menu>
