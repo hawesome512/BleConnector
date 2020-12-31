@@ -75,4 +75,14 @@ object DeviceKit {
         } ?: listOf()
     }
 
+    //获取列表项
+    fun getPageItem(name: String): DevicePageItem? {
+        connectedDeviceType?.pages?.forEach { page ->
+            page.content.forEach {
+                if (it.name == name) return it
+            }
+        }
+        return null
+    }
+
 }

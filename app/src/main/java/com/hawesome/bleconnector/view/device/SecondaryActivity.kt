@@ -6,11 +6,16 @@ import android.view.MenuItem
 import com.hawesome.bleconnector.R
 
 class SecondaryActivity : AppCompatActivity() {
+
+    companion object{
+        const val EXT_PARENT = "parent"
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_secondary)
-
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        title = intent.getStringExtra(EXT_PARENT)
         val title = intent.getStringExtra(DevicePageFragment.KEY_PAGE_TITLE)
         val children = intent.getStringArrayListExtra(DevicePageFragment.KEY_SECONDARY_CHILDREN)
         val transaction = supportFragmentManager.beginTransaction()

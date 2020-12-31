@@ -3,7 +3,7 @@ package com.hawesome.bleconnector.model
 /*
 *   设备页面子项显示类型
 * */
-enum class DeviceDisplay() {
+enum class DeviceDisplay {
 
     //柱状图
     BAR,

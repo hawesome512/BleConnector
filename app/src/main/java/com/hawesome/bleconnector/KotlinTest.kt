@@ -8,12 +8,12 @@ import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 import java.util.*
 import kotlin.concurrent.schedule
+import kotlin.math.roundToInt
 import kotlin.random.Random
 
 enum class Person(val text: String) { TEACHER("t"), STUDENT("s"), WORKER("w") }
 
 fun main() {
-    for (i in 1..100){
-        println(i.toDouble().toBigDecimal()*123.4.toBigDecimal()/10.0.toBigDecimal())
-    }
+    println(4.1.roundToInt())
+    println(4.5.roundToInt())
 }
