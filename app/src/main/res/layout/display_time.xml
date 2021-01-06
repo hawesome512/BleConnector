@@ -15,7 +15,7 @@
         app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
-        android:id="@+id/timeText"
+        android:id="@+id/nameText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
@@ -36,7 +36,7 @@
         android:textColor="@color/secondary_text"
         android:textSize="@dimen/font_subheadline"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/timeText" />
+        app:layout_constraintTop_toBottomOf="@+id/nameText" />
 
     <TextView
         android:id="@+id/localTime"
@@ -51,7 +51,7 @@
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/localText"
-        app:layout_constraintTop_toBottomOf="@+id/timeText" />
+        app:layout_constraintTop_toBottomOf="@+id/nameText" />
 
     <TextView
         android:id="@+id/deviceTime"
@@ -85,14 +85,14 @@
 
     <ImageView
         android:id="@+id/updateImage"
-        android:layout_width="@dimen/icon_size"
-        android:layout_height="@dimen/icon_size"
+        android:layout_width="@dimen/large_space"
+        android:layout_height="@dimen/large_space"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="16dp"
         android:contentDescription="@string/app_name"
-        app:tint="@color/blue_500"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/ic_baseline_loop_24" />
+        app:srcCompat="@drawable/ic_baseline_loop_24"
+        app:tint="@color/blue_500" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

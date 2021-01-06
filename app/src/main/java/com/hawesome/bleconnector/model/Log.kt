@@ -1,5 +1,8 @@
 package com.hawesome.bleconnector.model
 
+import android.os.Parcel
+import android.os.Parcelable
+import androidx.lifecycle.MutableLiveData
 import kotlin.math.min
 
 /*
@@ -7,6 +10,8 @@ import kotlin.math.min
 *   是一组连续的数据（Tag*n）*m，记录数目存储在相关监控点Tag中
 * */
 data class Log(val address: Int, val size: Int, val count: Int, val type: LogType) {
+
+    val indexLoadedLiveData = MutableLiveData<Int>()
 
     //记录集合：每条记录的首地址为key
     var logMap: HashMap<Int, List<Int>>
@@ -20,8 +25,8 @@ data class Log(val address: Int, val size: Int, val count: Int, val type: LogTyp
 
     fun setLog(location: Int, data: List<Int>) {
         logMap[location] = data
-        //TODO:触发更新通知
-
+        val index = logMap.keys.indexOf(location)
+        indexLoadedLiveData.postValue(index)
     }
 
     /*
@@ -56,10 +61,34 @@ data class LogItem(
     }
 }
 
-data class LogItemExtra(val name: String, val value: String? = null)
+data class LogItemExtra(val name: String, val value: String? = null):Parcelable{
+    constructor(parcel: Parcel) : this(
+        parcel.readString()?:"",
+        parcel.readString()
+    )
+
+    override fun describeContents(): Int {
+        TODO("Not yet implemented")
+    }
+
+    override fun writeToParcel(dest: Parcel?, flags: Int) {
+        TODO("Not yet implemented")
+    }
+
+    companion object CREATOR : Parcelable.Creator<LogItemExtra> {
+        override fun createFromParcel(parcel: Parcel): LogItemExtra {
+            return LogItemExtra(parcel)
+        }
+
+        override fun newArray(size: Int): Array<LogItemExtra?> {
+            return arrayOfNulls(size)
+        }
+    }
+
+}
 
 /*
 *   记录类型
 *   XST-7N:转换记录，报警记录，变位记录
 * */
-enum class LogType(val location: String) { TRSF("6000"), ALARM("7000"), EVENT("8000") }
+enum class LogType(val location: String) { TRSFLOG("6000"), ALARMLOG("7000"), EVENTLOG("8000") }

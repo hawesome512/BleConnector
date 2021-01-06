@@ -8,6 +8,7 @@ import com.hawesome.bleconnector.R
 import com.hawesome.bleconnector.kit.TagValueConverter
 import com.hawesome.bleconnector.model.DeviceModel
 import com.hawesome.bleconnector.model.DevicePageItem
+import com.hawesome.bleconnector.view.device.OnModifyListener
 import com.hawesome.bleconnector.view.device.OnTagListener
 import com.warkiz.widget.IndicatorSeekBar
 import com.warkiz.widget.OnSeekChangeListener
@@ -16,7 +17,7 @@ import kotlinx.android.synthetic.main.display_slider.view.*
 import kotlin.math.roundToInt
 
 class SliderDisplay(context: Context, val pageItem: DevicePageItem, attrs: AttributeSet? = null) :
-    FrameLayout(context, attrs), OnTagListener, OnSeekChangeListener {
+    FrameLayout(context, attrs), OnTagListener, OnSeekChangeListener, OnModifyListener {
 
     private var min = 0f
     private var max = 100f
@@ -38,7 +39,8 @@ class SliderDisplay(context: Context, val pageItem: DevicePageItem, attrs: Attri
         seekBar.max = max
         seekBar.onSeekChangeListener = this
         observeTagUpdate(context, pageItem) {
-            val progress = TagValueConverter.getShowString(it[0].value, pageItem).toFloat()
+            val tagValue = it[0].value
+            val progress = TagValueConverter.getShowString(tagValue, pageItem).toFloat()
             seekBar.setProgress(progress)
         }
 
@@ -53,5 +55,10 @@ class SliderDisplay(context: Context, val pageItem: DevicePageItem, attrs: Attri
     }
 
     override fun onStopTrackingTouch(seekBar: IndicatorSeekBar?) {
+    }
+
+    override fun onModifyRequest(): Int? {
+        val showValue = seekBar.progressFloat.toString()
+        return TagValueConverter.setUpdateValue(showValue,pageItem)
     }
 }

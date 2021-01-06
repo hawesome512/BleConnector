@@ -6,6 +6,19 @@
     android:layout_height="wrap_content">
 
     <ImageView
+        android:id="@+id/imageView3"
+        android:layout_width="@dimen/large_space"
+        android:layout_height="@dimen/large_space"
+        android:layout_marginEnd="16dp"
+        android:contentDescription="@string/app_name"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintDimensionRatio="1:1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ic_chevron_right_24"
+        app:tint="@color/secondary_text" />
+
+    <ImageView
         android:id="@+id/deviceImage"
         android:layout_width="80dp"
         android:layout_height="80dp"
@@ -23,10 +36,9 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:layout_marginEnd="16dp"
         android:textSize="@dimen/font_headline"
         app:layout_constraintBottom_toBottomOf="@+id/deviceImage"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/imageView3"
         app:layout_constraintStart_toEndOf="@+id/deviceImage"
         app:layout_constraintTop_toTopOf="@+id/deviceImage" />
 
@@ -48,7 +60,7 @@
         android:indeterminate="true"
         android:visibility="invisible"
         app:layout_constraintBottom_toBottomOf="@+id/deviceImage"
-        app:layout_constraintEnd_toEndOf="@+id/deviceName"
+        app:layout_constraintEnd_toEndOf="@+id/imageView3"
         app:layout_constraintStart_toStartOf="@+id/deviceName" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

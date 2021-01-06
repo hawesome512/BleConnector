@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <View
+        android:id="@+id/divider"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/divider"
+        android:background="@color/divider"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/typeText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:textColor="@color/blue_500"
+        android:textSize="@dimen/font_headline"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/orderText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:textSize="@dimen/font_foot"
+        android:textStyle="italic"
+        app:layout_constraintBottom_toBottomOf="@+id/typeText"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/typeText" />
+
+    <ImageView
+        android:id="@+id/timeImage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="8dp"
+        android:contentDescription="@string/app_name"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/typeText"
+        app:layout_constraintTop_toBottomOf="@+id/typeText"
+        app:srcCompat="@drawable/ic_clock" />
+
+    <TextView
+        android:id="@+id/timeText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        app:layout_constraintBottom_toBottomOf="@+id/timeImage"
+        app:layout_constraintStart_toEndOf="@+id/timeImage"
+        app:layout_constraintTop_toTopOf="@+id/timeImage" />
+
+    <TextView
+        android:id="@+id/endText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:textColor="@color/red_500"
+        app:layout_constraintBottom_toBottomOf="@+id/arrowImage"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/arrowImage" />
+
+    <ImageView
+        android:id="@+id/arrowImage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:contentDescription="@string/app_name"
+        app:layout_constraintBottom_toBottomOf="@+id/startText"
+        app:layout_constraintEnd_toStartOf="@+id/endText"
+        app:layout_constraintTop_toTopOf="@+id/startText"
+        app:srcCompat="@drawable/ic_right"
+        app:tint="@color/red_500" />
+
+    <TextView
+        android:id="@+id/startText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:textColor="@color/red_500"
+        app:layout_constraintBottom_toBottomOf="@+id/timeImage"
+        app:layout_constraintEnd_toStartOf="@+id/arrowImage"
+        app:layout_constraintTop_toTopOf="@+id/timeImage" />
+</androidx.constraintlayout.widget.ConstraintLayout>

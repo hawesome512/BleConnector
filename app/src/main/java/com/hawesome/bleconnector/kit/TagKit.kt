@@ -35,7 +35,7 @@ object TagKit : BleReceivedCallback {
                 val size = zone.items.size
                 val count = zone.log
                 val logType = LogType.values().first { it.location == zone.location }
-                logList.add(Log(address, size, count,logType))
+                logList.add(Log(address, size, count, logType))
             } else {
                 zone.items.forEachIndexed { index, item ->
                     tagList.add(Tag(item, address = address + index))
@@ -79,6 +79,8 @@ object TagKit : BleReceivedCallback {
         }
     }
 
+    fun getLog(type: String) = logList.firstOrNull { it.type.name == type.toUpperCase() }
+
     fun getTags(names: List<String>) = tagList.filter { names.contains(it.name) }
 
     /*
@@ -95,14 +97,14 @@ object TagKit : BleReceivedCallback {
     *   请求刷新普通数据片区
     *   实时循环刷新的不需要：失败重试
     * */
-    fun requestPageQuery(address: List<String>?, refresh:List<String>?) {
+    fun requestPageQuery(address: List<String>?, refresh: List<String>?) {
         val bleCommands = mutableListOf<BleCommand>()
-        address?.let { bleCommands.addAll(buildCommands(it,BleCommand.DEFAULT_REPEAT)) }
+        address?.let { bleCommands.addAll(buildCommands(it, BleCommand.DEFAULT_REPEAT)) }
         refresh?.let { bleCommands.addAll(buildCommands(it, BleCommand.ALWAYS_REPEAT)) }
         BluetoothKit.executeCMDList(bleCommands)
     }
 
-    private fun buildCommands(locations:List<String>,retry:Int):List<BleCommand>{
+    private fun buildCommands(locations: List<String>, retry: Int): List<BleCommand> {
         val bleCommands = mutableListOf<BleCommand>()
         locations.forEach { location ->
             val zone = deviceType!!.address.firstOrNull { it.location == location }
@@ -119,7 +121,11 @@ object TagKit : BleReceivedCallback {
     *   请求刷新记录片区数据
     *   记录条数有相应的存储变量点，返回记录片区实际记录条数
     * */
-    fun requestLogQueryForCount(location: Int, recorderCount: Int, forceUpdate: Boolean = false): Int {
+    fun requestLogQueryForCount(
+        location: Int,
+        recorderCount: Int,
+        forceUpdate: Boolean = false
+    ): Int {
         logList.firstOrNull { it.address == location }?.let { log ->
             val count = min(recorderCount, log.count)
             //强制刷新or记录未读取则请求数据
@@ -127,7 +133,12 @@ object TagKit : BleReceivedCallback {
                 val bleCommands = mutableListOf<BleCommand>()
                 for (i in 0 until count) {
                     val cmdInfo = CMDInfo(CMDType.READ, log.getLocation(i), log.size)
-                    bleCommands.add(BleCommand(ModbusKit.buildReadCMD(cmdInfo), BleCommand.DEFAULT_REPEAT))
+                    bleCommands.add(
+                        BleCommand(
+                            ModbusKit.buildReadCMD(cmdInfo),
+                            BleCommand.DEFAULT_REPEAT
+                        )
+                    )
                 }
                 BluetoothKit.executeCMDList(bleCommands)
             }
@@ -143,7 +154,8 @@ object TagKit : BleReceivedCallback {
         tags.firstOrNull()?.let { firstTag ->
             val data = tags.map { it.value }
             val cmdInfo = CMDInfo(CMDType.WRITE, firstTag.address, tags.size)
-            val command = BleCommand(ModbusKit.buildWriteCMD(cmdInfo, data),BleCommand.DEFAULT_REPEAT)
+            val command =
+                BleCommand(ModbusKit.buildWriteCMD(cmdInfo, data), BleCommand.DEFAULT_REPEAT)
             BluetoothKit.executeCMDList(listOf(command))
         }
     }

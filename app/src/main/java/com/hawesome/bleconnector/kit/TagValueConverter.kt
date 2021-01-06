@@ -28,7 +28,7 @@ import kotlin.math.max
 object TagValueConverter {
 
     const val BCD_DATETIME_PATTERN = "yyMMddHHmmss"
-    const val SHOW_DATETIME_PATTERN = "yyyy MMM dd HH:mm:ss"
+    const val SHOW_DATETIME_PATTERN = "yyyy-MM-dd HH:mm:ss"
 
     /*
     *   获取点的显示值
@@ -218,7 +218,7 @@ object TagValueConverter {
     fun getBCDTime(value: List<Int>): String {
         val outFormatter = SHOW_DATETIME_PATTERN.toDateTimeFormatter()
         if (value.size != 3) return LocalDateTime.now().format(outFormatter)
-        val hexValue = String.format("%04X%04X%04X", value[0],value[1],value[2])
+        val hexValue = String.format("%04X%04X%04X", value[0], value[1], value[2])
         val dateTime = LocalDateTime.parse(hexValue, BCD_DATETIME_PATTERN.toDateTimeFormatter())
         return dateTime.format(outFormatter)
     }
@@ -230,7 +230,7 @@ object TagValueConverter {
         val hexValue = dateTime.format(BCD_DATETIME_PATTERN.toDateTimeFormatter())
         val data = mutableListOf<Int>()
         for (i in 0..2) {
-            data.add(hexValue.substring(i * 4, i + 4).toInt(16))
+            data.add(hexValue.substring(i * 4, (i + 1) * 4).toInt(16))
         }
         return data
     }

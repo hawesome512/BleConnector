@@ -12,14 +12,13 @@ import com.hawesome.bleconnector.model.LogType
 object LogKit {
 
     fun getLogData(log: Log, index: Int): LogItem? {
-        log.getLog(index)?.let {
-            return when (log.type) {
-                LogType.TRSF -> cvtTrsfInfo(it)
-                LogType.EVENT -> cvtEventInfo(it)
-                LogType.ALARM -> cvtAlarmInfo(it)
-            }
+        val data = log.getLog(index)
+        return if (data.isNullOrEmpty()) null
+        else when (log.type) {
+            LogType.TRSFLOG -> cvtTrsfInfo(data)
+            LogType.EVENTLOG -> cvtEventInfo(data)
+            LogType.ALARMLOG -> cvtAlarmInfo(data)
         }
-        return null
     }
 
     /*

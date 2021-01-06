@@ -8,6 +8,7 @@ import androidx.constraintlayout.widget.ConstraintLayout
 import com.hawesome.bleconnector.R
 import com.hawesome.bleconnector.ext.toResString
 import com.hawesome.bleconnector.kit.DeviceKit
+import com.hawesome.bleconnector.kit.TagKit
 import com.hawesome.bleconnector.model.DeviceDisplay
 import com.hawesome.bleconnector.view.device.display.ItemDisplay
 import com.hawesome.bleconnector.view.device.display.SegmentDisplay
@@ -25,22 +26,30 @@ class ParamActivity : AppCompatActivity() {
         setContentView(R.layout.activity_param)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         val itemName = intent.getStringExtra(EXT_ITEM)!!
-        DeviceKit.getPageItem(itemName)?.let {
-            title = it.name.toResString()
+        DeviceKit.getPageItem(itemName)?.let { pageItem ->
+            title = pageItem.name.toResString()
             val layoutParams = ConstraintLayout.LayoutParams(
                 ConstraintLayout.LayoutParams.MATCH_PARENT,
                 ConstraintLayout.LayoutParams.WRAP_CONTENT
             )
             layoutParams.topToTop = R.id.container
             layoutParams.bottomToBottom = R.id.authorityText
-            val child = when (it.getDisplay()) {
-                DeviceDisplay.SEGMENT -> SegmentDisplay(this, it)
-                DeviceDisplay.SLIDER -> SliderDisplay(this, it)
-                DeviceDisplay.ITEM -> ItemDisplay(this, it)
+            val child = when (pageItem.getDisplay()) {
+                DeviceDisplay.SEGMENT -> SegmentDisplay(this, pageItem)
+                DeviceDisplay.SLIDER -> SliderDisplay(this, pageItem)
+                DeviceDisplay.ITEM -> ItemDisplay(this, pageItem)
                 else -> View(this)
             }
             child.layoutParams = layoutParams
             container.addView(child)
+
+            updateBtn.setOnClickListener {
+                val newValue = (child as? OnModifyListener)?.onModifyRequest()
+                val tag = TagKit.getTags(pageItem.tags ?: listOf()).firstOrNull()
+                if (newValue == null || tag == null) return@setOnClickListener
+                val newTag = tag.copy(value = newValue)
+                TagKit.requestTagUpdate(listOf(newTag))
+            }
         }
     }
 

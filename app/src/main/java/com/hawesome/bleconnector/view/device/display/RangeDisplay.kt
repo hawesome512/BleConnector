@@ -14,6 +14,7 @@ import com.hawesome.bleconnector.ext.trim
 import com.hawesome.bleconnector.kit.TagValueConverter
 import com.hawesome.bleconnector.model.DevicePageItem
 import com.hawesome.bleconnector.model.Tag
+import com.hawesome.bleconnector.view.device.OnModifyListener
 import com.hawesome.bleconnector.view.device.OnTagListener
 
 class RangeDisplay(context: Context, val pageItem: DevicePageItem, attrs: AttributeSet? = null) :

@@ -16,10 +16,13 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.BleConnector">
-        <activity android:name=".view.device.ParamActivity">
-        </activity>
-        <activity android:name=".view.CanvasActivity">
-        </activity>
+        <activity android:name=".view.device.log.LogExtraActivity"></activity>
+        <activity android:name=".view.device.log.LogActivity" />
+        <activity
+            android:name=".view.device.ConfirmActivity"
+            android:theme="@style/Theme.AppCompat.Light.Dialog" />
+        <activity android:name=".view.device.ParamActivity" />
+        <activity android:name=".view.CanvasActivity" />
         <activity android:name=".view.device.SecondaryActivity" />
         <activity android:name=".view.device.DeviceActivity" />
         <activity android:name=".view.main.MainActivity">

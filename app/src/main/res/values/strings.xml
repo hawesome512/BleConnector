@@ -12,6 +12,8 @@
     <string name="bluetooth_reconnect">设备蓝牙已断开，尝试重连中。</string>
     <string name="retry">重试</string>
     <string name="exit">退出</string>
+    <string name="cancel">取消</string>
+    <string name="confirm">是的</string>
     <!--device-->
     <string name="realtime">测量</string>
     <string name="parameter">参数</string>
@@ -122,6 +124,8 @@
     <string name="uor">过压返回(%Un)</string>
     <string name="frequencytreshhold">频率阈值</string>
     <string name="freqswitch">功能开关</string>
+    <string name="freqswitch_on">开</string>
+    <string name="freqswitch_off">关</string>
     <string name="fl">欠频切换(%Fn)</string>
     <string name="flr">欠频返回(%Fn)</string>
     <string name="fo">过频切换(%Fn)</string>
@@ -154,6 +158,8 @@
     <string name="otaalert">当前版本已为最新</string>
     <string name="updating">正在修改</string>
     <string name="update">修改参数</string>
+    <string name="updated">修改完成</string>
+    <string name="update_confirm">确定修改吗？</string>
     <string name="password_title">设备密码</string>
     <string name="password_error">密码错误</string>
     <string name="locallocked">此设备设定为【本地】模式，不能远程控制</string>

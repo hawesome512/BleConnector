@@ -52,9 +52,11 @@ class BarDisplay(context: Context, val pageItem: DevicePageItem, attrs: Attribut
         xAxis.valueFormatter = ItemValueFormatter(xItems)
         xAxis.labelCount = xItems!!.size
         axisLeft.setDrawLimitLinesBehindData(true)
+
+        updateViews(TagKit.getTags(pageItem.tags ?: listOf()))
     }
 
-    private fun updateYAxis(){
+    private fun updateYAxis() {
         val yItems = pageItem.items
         //items:["0","0.01*Ul*Un/yellow","Un/green","0.01*Uo*Un/red","1.3*Un"]
         axisLeft.axisMinimum = 0f

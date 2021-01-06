@@ -8,7 +8,9 @@ import android.widget.Button
 import android.widget.TextView
 import androidx.lifecycle.MediatorLiveData
 import com.hawesome.bleconnector.R
+import com.hawesome.bleconnector.ext.startActivity
 import com.hawesome.bleconnector.model.Tag
+import com.hawesome.bleconnector.view.device.ConfirmActivity
 import com.warkiz.widget.IndicatorSeekBar
 import com.warkiz.widget.OnSeekChangeListener
 import com.warkiz.widget.SeekParams
@@ -19,7 +21,7 @@ import java.util.*
 import kotlin.math.roundToInt
 import kotlin.random.Random
 
-class CanvasActivity : AppCompatActivity(),OnSeekChangeListener {
+class CanvasActivity : AppCompatActivity() {
 
     companion object {
         const val TAG = "CanvasActivity"
@@ -29,19 +31,16 @@ class CanvasActivity : AppCompatActivity(),OnSeekChangeListener {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_canvas)
-        seekBar.min = 90f
-        seekBar.max = 100f
-        seekBar.onSeekChangeListener = this
+        executeBtn.setOnClickListener {
+            startActivity<ConfirmActivity>(this)
+        }
     }
 
-    override fun onSeeking(seekParams: SeekParams?) {
-        val step = (seekBar.progressFloat-90)/0.5f
-        seekBar.setProgress(90+0.5f*step.roundToInt())
+    override fun onResume() {
+        super.onResume()
     }
 
-    override fun onStartTrackingTouch(seekBar: IndicatorSeekBar?) {
-    }
-
-    override fun onStopTrackingTouch(seekBar: IndicatorSeekBar?) {
+    override fun onPause() {
+        super.onPause()
     }
 }

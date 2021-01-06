@@ -18,9 +18,9 @@ class HeaderDisplay(context: Context, val pageItem: DevicePageItem, attrs: Attri
         inflate(context, R.layout.display_header, this)
         nameText.text = pageItem.section?.toResString()
         if (pageItem.child.isNullOrEmpty()) {
-            moreText.visibility = View.INVISIBLE
+            imageView.visibility = View.INVISIBLE
         } else {
-            moreText.visibility = View.VISIBLE
+            imageView.visibility = View.VISIBLE
             setOnClickListener {
                 DeviceKit.getPage(pageItem)?.let { page ->
                     startActivity<SecondaryActivity>(context) {
