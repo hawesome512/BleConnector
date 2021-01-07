@@ -11,7 +11,7 @@ class MainViewModel:ViewModel() {
 
     private val refreshLiveData = MutableLiveData<Any?>()
 
-    private val connectLiveData = MutableLiveData<BleDevice>()
+    val connectLiveData = MutableLiveData<BleDevice>()
 
     val bleDeviceList = Transformations.switchMap(refreshLiveData){ Repository.getBleDevices() }
 

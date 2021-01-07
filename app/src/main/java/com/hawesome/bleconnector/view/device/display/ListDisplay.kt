@@ -6,6 +6,7 @@ import android.view.View
 import android.widget.FrameLayout
 import android.widget.Toast
 import com.hawesome.bleconnector.R
+import com.hawesome.bleconnector.ext.showToast
 import com.hawesome.bleconnector.ext.startActivity
 import com.hawesome.bleconnector.ext.toResString
 import com.hawesome.bleconnector.ext.toUnitString
@@ -53,11 +54,7 @@ class ListDisplay(context: Context, val pageItem: DevicePageItem, attrs: Attribu
     }
 
     private fun showToast() {
-        Toast.makeText(
-            context,
-            "${nameText.text}(${valueText.text})",
-            Toast.LENGTH_SHORT
-        ).show()
+        "${nameText.text}(${valueText.text})".showToast()
     }
 
     private fun updateViews(tags: List<Tag>) {

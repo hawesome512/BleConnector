@@ -59,6 +59,7 @@ dependencies {
     implementation 'com.github.PhilJay:MPAndroidChart:v3.1.0'
     implementation 'info.hoang8f:android-segmented:1.0.6'
     implementation 'com.github.warkiz.widget:indicatorseekbar:2.1.2'
+    implementation 'cn.yipianfengye.android:zxing-library:2.2'
     kapt "org.permissionsdispatcher:permissionsdispatcher-processor:4.8.0"
     testImplementation 'junit:junit:4.13.1'
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'

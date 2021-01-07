@@ -38,6 +38,8 @@ object LogKit {
         val type1 = when (subData[4] / 0x100) {
             0x01 -> "LP1"
             0x02 -> "LP2"
+            0x04 -> "LP3"
+            0x08 -> "LPAll"
             else -> "unknown"
         }.toResString()
         val type2Items = listOf(

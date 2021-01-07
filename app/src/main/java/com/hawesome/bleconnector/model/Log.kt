@@ -72,7 +72,10 @@ data class LogItemExtra(val name: String, val value: String? = null):Parcelable{
     }
 
     override fun writeToParcel(dest: Parcel?, flags: Int) {
-        TODO("Not yet implemented")
+        dest?.apply {
+            writeString(name)
+            writeString(value)
+        }
     }
 
     companion object CREATOR : Parcelable.Creator<LogItemExtra> {

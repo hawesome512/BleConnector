@@ -27,7 +27,6 @@ class DevicePageFragment : Fragment() {
         const val TAG = "DevicePageFragment"
         const val KEY_PAGE_TITLE = "title"
         const val KEY_SECONDARY_CHILDREN = "children"
-        const val REFRESH_INTERVAL = 5000L
 
         /*
         * children非空时：title页面下的次要页面

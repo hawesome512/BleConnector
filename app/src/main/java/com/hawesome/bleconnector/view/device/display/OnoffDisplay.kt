@@ -5,6 +5,7 @@ import android.util.AttributeSet
 import android.widget.FrameLayout
 import android.widget.Toast
 import com.hawesome.bleconnector.R
+import com.hawesome.bleconnector.ext.showToast
 import com.hawesome.bleconnector.ext.startActivity
 import com.hawesome.bleconnector.ext.toResString
 import com.hawesome.bleconnector.kit.TagKit
@@ -34,11 +35,7 @@ class OnoffDisplay(context: Context, val pageItem: DevicePageItem, attrs: Attrib
         }
 
         setOnClickListener {
-            Toast.makeText(
-                context,
-                "${nameText.text}",
-                Toast.LENGTH_SHORT
-            ).show()
+            nameText.text.showToast()
         }
         funcSwitch.setOnClickListener {
             val isOne = funcSwitch.isChecked

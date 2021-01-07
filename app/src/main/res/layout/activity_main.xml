@@ -92,12 +92,13 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/scanProgress">
+        app:layout_constraintTop_toBottomOf="@+id/scanButton">
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/deviceRecycler"
             android:layout_width="0dp"
             android:layout_height="0dp" />
+
     </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
     <ProgressBar
@@ -105,10 +106,20 @@
         style="?android:attr/progressBarStyleHorizontal"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
         android:indeterminate="true"
         app:layout_constraintEnd_toEndOf="@+id/scanButton"
         app:layout_constraintStart_toStartOf="@+id/scanButton"
         app:layout_constraintTop_toBottomOf="@+id/scanButton" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:text="@string/bluetooth_refresh"
+        android:textSize="@dimen/font_foot"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

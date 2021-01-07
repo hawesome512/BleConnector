@@ -12,6 +12,7 @@ import androidx.viewpager2.adapter.FragmentStateAdapter
 import androidx.viewpager2.widget.ViewPager2
 import com.clj.fastble.data.BleDevice
 import com.hawesome.bleconnector.R
+import com.hawesome.bleconnector.ext.showToast
 import com.hawesome.bleconnector.ext.toResString
 import com.hawesome.bleconnector.kit.BluetoothKit
 import com.hawesome.bleconnector.kit.DeviceKit
@@ -106,7 +107,7 @@ class DeviceActivity : AppCompatActivity(), OnBleDisConnectListener {
     }
 
     override fun onDisConnect() {
-        Toast.makeText(this, R.string.bluetooth_reconnect, Toast.LENGTH_SHORT).show()
+        R.string.bluetooth_reconnect.showToast()
         viewModel.connect(bleDevice!!)
     }
 }

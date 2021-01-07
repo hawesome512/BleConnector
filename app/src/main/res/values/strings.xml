@@ -10,6 +10,7 @@
     <string name="bluetooth_connect_failure">连接失败，请重试！</string>
     <string name="bluetooth_disconnect">设备蓝牙已断开</string>
     <string name="bluetooth_reconnect">设备蓝牙已断开，尝试重连中。</string>
+    <string name="bluetooth_refresh">下拉刷新，重新搜索可用设备</string>
     <string name="retry">重试</string>
     <string name="exit">退出</string>
     <string name="cancel">取消</string>
@@ -85,6 +86,8 @@
     <string name="linepriority">主用侧</string>
     <string name="lp1">I电</string>
     <string name="lp2">II电</string>
+    <string name="lp3">III电</string>
+    <string name="lpall">全电</string>
     <string name="lp12">I&#038;II电</string>
     <string name="deviceconfig">设备参数</string>
     <string name="switchingctrl">操作方式</string>

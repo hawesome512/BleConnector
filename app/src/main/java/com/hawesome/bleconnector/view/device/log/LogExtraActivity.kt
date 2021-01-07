@@ -11,6 +11,7 @@ import kotlinx.android.synthetic.main.activity_log_extra.*
 class LogExtraActivity : AppCompatActivity() {
 
     companion object {
+        const val EXT_TITLE = "title"
         const val EXT_DATA = "extras"
     }
 
@@ -18,6 +19,7 @@ class LogExtraActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_log_extra)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        title = intent.getStringExtra(EXT_TITLE)
         intent.getParcelableArrayListExtra<LogItemExtra>(EXT_DATA)?.let {
             recyclerView.layoutManager = LinearLayoutManager(this)
             recyclerView.adapter = LogExtraAdapter(it)

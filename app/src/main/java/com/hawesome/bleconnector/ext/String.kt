@@ -5,6 +5,7 @@ import android.text.Spannable
 import android.text.SpannableString
 import android.text.Spanned
 import android.text.style.ForegroundColorSpan
+import android.widget.Toast
 import com.hawesome.bleconnector.R
 import com.hawesome.bleconnector.view.BCApplication
 import java.time.format.DateTimeFormatter
@@ -14,7 +15,8 @@ import java.time.format.DateTimeFormatter
 * */
 fun String.toResColor(): Int {
     val context = BCApplication.context
-    val id = context.resources.getIdentifier(this.toValidResourceName(), "color", context.packageName)
+    val id =
+        context.resources.getIdentifier(this.toValidResourceName(), "color", context.packageName)
     return if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.M) {
         context.getColor(id)
     } else {

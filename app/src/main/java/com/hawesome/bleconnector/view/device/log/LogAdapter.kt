@@ -8,7 +8,9 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.hawesome.bleconnector.R
+import com.hawesome.bleconnector.ext.showToast
 import com.hawesome.bleconnector.ext.startActivity
+import com.hawesome.bleconnector.ext.toUnitString
 import com.hawesome.bleconnector.model.LogItem
 
 class LogAdapter(val logItems: List<LogItem?>) : RecyclerView.Adapter<LogAdapter.ViewHolder>() {
@@ -30,10 +32,10 @@ class LogAdapter(val logItems: List<LogItem?>) : RecyclerView.Adapter<LogAdapter
         itemView.setOnClickListener {
             val extras = logItems[holder.adapterPosition]?.extras
             if (extras.isNullOrEmpty()) {
-                val info = "${holder.typeText.text}(${holder.timeText.text})"
-                Toast.makeText(context, holder.typeText.text, Toast.LENGTH_SHORT).show()
+                "${holder.typeText.text}(${holder.timeText.text})".showToast()
             } else {
                 startActivity<LogExtraActivity>(context) {
+                    putExtra(LogExtraActivity.EXT_TITLE, holder.typeText.text.toString())
                     putParcelableArrayListExtra(LogExtraActivity.EXT_DATA, extras as ArrayList)
                 }
             }
@@ -43,12 +45,12 @@ class LogAdapter(val logItems: List<LogItem?>) : RecyclerView.Adapter<LogAdapter
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val logItem = logItems[position]
-        if (logItem == null){
+        if (logItem == null) {
             holder.itemView.visibility = View.INVISIBLE
             return
         }
         holder.itemView.visibility = View.VISIBLE
-        holder.typeText.text = logItem.type
+        holder.typeText.text = logItem.type.toUnitString()
         holder.orderText.text = (position + 1).toString()
         holder.timeText.text = logItem.time
         val infos = logItem.info.split(LogItem.INFO_SEPERATOR)
