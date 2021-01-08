@@ -2,6 +2,7 @@ package com.hawesome.bleconnector.view.device
 
 import android.content.Context
 import android.util.AttributeSet
+import android.util.TypedValue
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.FrameLayout
@@ -39,7 +40,7 @@ class ButtonDisplay(context: Context, val pageItem: DevicePageItem, attrs: Attri
             val infos = items[index].split(DeviceModel.ITEM_INFO_SEPARATOR)
             val button = Button(context!!)
             button.text = infos.first()
-            button.textSize = textSize
+            button.setTextSize(TypedValue.COMPLEX_UNIT_PX, textSize)
             button.setTextColor(textColor)
             button.setBackgroundColor(infos.last().toResColor())
             button.setOnClickListener {

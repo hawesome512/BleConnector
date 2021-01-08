@@ -1,5 +1,7 @@
 package com.hawesome.bleconnector.kit
 
+import com.hawesome.bleconnector.R
+import com.hawesome.bleconnector.ext.showToast
 import com.hawesome.bleconnector.model.*
 import kotlin.math.min
 
@@ -151,6 +153,12 @@ object TagKit : BleReceivedCallback {
     * 请求修改数据
     * */
     fun requestTagUpdate(tags: List<Tag>) {
+
+        if (isLocalLocked()) {
+            R.string.locallocked.showToast()
+            return
+        }
+
         tags.firstOrNull()?.let { firstTag ->
             val data = tags.map { it.value }
             val cmdInfo = CMDInfo(CMDType.WRITE, firstTag.address, tags.size)
@@ -158,6 +166,13 @@ object TagKit : BleReceivedCallback {
                 BleCommand(ModbusKit.buildWriteCMD(cmdInfo, data), BleCommand.DEFAULT_REPEAT)
             BluetoothKit.executeCMDList(listOf(command))
         }
+    }
+
+    fun isLocalLocked(): Boolean {
+        val mode = deviceType?.authority?.firstOrNull { it.contains(DeviceModel.AUTHORITY_MODE) }
+        if (mode == null) return false
+        val modeTag = getTags(listOf(DeviceModel.AUTHORITY_MODE)).first()
+        return TagValueConverter.checkLocalLocked(modeTag.value, mode)
     }
 
 }

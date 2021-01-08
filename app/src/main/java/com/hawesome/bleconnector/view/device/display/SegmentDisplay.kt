@@ -2,6 +2,7 @@ package com.hawesome.bleconnector.view.device.display
 
 import android.content.Context
 import android.util.AttributeSet
+import android.util.TypedValue
 import android.view.ViewGroup
 import android.widget.FrameLayout
 import android.widget.LinearLayout
@@ -38,7 +39,10 @@ class SegmentDisplay(context: Context, val pageItem: DevicePageItem, attrs: Attr
             val radioButton = RadioButton(context, null, 0, R.style.RadioButton)
             radioButton.isClickable = true
             radioButton.setBackgroundResource(R.drawable.bg_radio_button)
-            radioButton.textSize = context.resources.getDimension(R.dimen.font_body)
+            radioButton.setTextSize(
+                TypedValue.COMPLEX_UNIT_PX,
+                context.resources.getDimension(R.dimen.font_headline)
+            )
             radioButton.text = infos.last().toResString()
             radioButton.layoutParams = layoutParams
             segment.addView(radioButton)

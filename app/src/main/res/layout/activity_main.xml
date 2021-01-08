@@ -20,25 +20,29 @@
         android:scaleType="fitXY"
         app:layout_constraintBottom_toTopOf="@+id/guideline"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0"
         app:srcCompat="@drawable/bg_top" />
 
     <TextView
         android:id="@+id/headerText"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
         android:layout_marginEnd="16dp"
         android:autoSizeMaxTextSize="@dimen/font_title"
         android:autoSizeMinTextSize="@dimen/font_headline"
+        android:autoSizeTextType="uniform"
+        android:maxLines="1"
         android:text="@string/home_title"
         android:textColor="@color/white"
         android:textSize="@dimen/font_title"
         app:layout_constraintBottom_toTopOf="@+id/guideline"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintStart_toEndOf="@+id/updateImage"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.502" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline2"
@@ -115,11 +119,23 @@
         android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
+        android:layout_marginBottom="16dp"
         android:text="@string/bluetooth_refresh"
         android:textSize="@dimen/font_foot"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
+
+    <ImageView
+        android:id="@+id/updateImage"
+        android:layout_width="@dimen/button_size"
+        android:layout_height="@dimen/button_size"
+        android:layout_marginStart="8dp"
+        android:contentDescription="@string/app_name"
+        app:layout_constraintBottom_toBottomOf="@+id/headerText"
+        app:layout_constraintStart_toStartOf="@+id/headerImage"
+        app:layout_constraintTop_toTopOf="@+id/headerText"
+        app:srcCompat="@mipmap/ic_launcher_foreground"
+        app:tint="@color/white" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

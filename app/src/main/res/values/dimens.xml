@@ -10,6 +10,9 @@
     <dimen name="button_size">64dp</dimen>
     <dimen name="icon_size">48dp</dimen>
 
+    <dimen name="cvs_space">10dp</dimen>
+    <dimen name="cvs_line">2dp</dimen>
+
     <!--字体-->
     <dimen name="font_title">34sp</dimen>
     <dimen name="font_headline">20sp</dimen>

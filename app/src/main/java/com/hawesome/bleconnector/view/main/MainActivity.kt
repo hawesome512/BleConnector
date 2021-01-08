@@ -2,11 +2,11 @@ package com.hawesome.bleconnector.view.main
 
 import android.Manifest
 import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
-import android.view.WindowManager
+import android.util.Log
+import android.util.TypedValue
+import android.view.*
 import android.widget.ImageView
 import android.widget.ProgressBar
 import android.widget.TextView
@@ -54,6 +54,7 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
         //可用设备列表
         deviceRecycler.layoutManager = LinearLayoutManager(this)
         deviceRecycler.adapter = deviceAdapter
@@ -74,15 +75,22 @@ class MainActivity : AppCompatActivity() {
         scanButton.setOnClickListener {
             checkCameraPermissionWithPermissionCheck()
         }
+        //打开官网
+        updateImage.setOnClickListener {
+            val intent = Intent(Intent.ACTION_VIEW)
+            intent.data = Uri.parse("http://s.eds.ink/download/XST-7T")
+            startActivity(intent)
+        }
         //蓝牙状态订阅
-        viewModel.bleDeviceList.observe(this) { result ->
+        BluetoothKit.bleDeviceLiveData.observe(this) {
             deviceList.clear()
-            val devices = result.getOrNull()
-            if (!devices.isNullOrEmpty()) {
-                deviceList.addAll(devices)
+            if (it.isNotEmpty()) {
+                deviceList.addAll(it)
                 scanButton.isEnabled = true
             }
             deviceAdapter.notifyDataSetChanged()
+        }
+        viewModel.bleDeviceList.observe(this) { _ ->
             scanProgress.visibility = View.INVISIBLE
         }
         viewModel.connectResult.observe(this@MainActivity) { result ->
@@ -122,6 +130,11 @@ class MainActivity : AppCompatActivity() {
         bluetoothImage.drawable.setTint(tintColor)
     }
 
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.device,menu)
+        return super.onCreateOptionsMenu(menu)
+    }
+
     @NeedsPermission(Manifest.permission.CAMERA, Manifest.permission.VIBRATE)
     fun checkCameraPermission() {
         val intent = Intent(this, CaptureActivity::class.java)
@@ -135,12 +148,14 @@ class MainActivity : AppCompatActivity() {
         if (bundle.getInt(CodeUtils.RESULT_TYPE) != CodeUtils.RESULT_SUCCESS) return
         bundle.getString(CodeUtils.RESULT_STRING)?.let { info ->
             deviceList.firstOrNull { info.contains(it.name) }?.let {
-                connect(it,scanProgress)
+                connect(it, scanProgress)
+                return
             }
         }
+        R.string.scan_failure.showToast()
     }
 
-    private fun connect(bleDevice: BleDevice,progressBar: ProgressBar){
+    private fun connect(bleDevice: BleDevice, progressBar: ProgressBar) {
         viewModel.connect(bleDevice)
         progressBar.visibility = View.VISIBLE
         connectingProgress = progressBar
@@ -160,7 +175,7 @@ class MainActivity : AppCompatActivity() {
             val holder = ViewHolder(itemView)
             holder.itemView.setOnClickListener {
                 val device = deviceList[holder.adapterPosition]
-                connect(device,holder.deviceProgress)
+                connect(device, holder.deviceProgress)
             }
             return holder
         }

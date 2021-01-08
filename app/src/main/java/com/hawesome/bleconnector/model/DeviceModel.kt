@@ -22,6 +22,7 @@ data class DeviceModel(val types: List<DeviceType>) {
 
         //控制模式：本地、远程
         const val AUTHORITY_MODE = "CtrlMode"
+        const val LOCAL = "local"
 
         //控制密码
         const val AUTHORITY_CODE = "CtrlCode"

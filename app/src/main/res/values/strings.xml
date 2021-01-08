@@ -3,6 +3,7 @@
     <string name="app_name">XSTW 助手</string>
     <string name="home_title">XSTW 智能管理助手</string>
     <string name="scan">扫一扫</string>
+    <string name="scan_failure">该二维码与可用设备不匹配！</string>
     <string name="bluetooth_on">已打开</string>
     <string name="bluetooth_off">已关闭</string>
     <string name="bluetooth_unavaiable">不可用</string>

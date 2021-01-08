@@ -3,6 +3,7 @@ package com.hawesome.bleconnector.kit
 import android.app.Application
 import android.bluetooth.BluetoothGatt
 import android.util.Log
+import androidx.lifecycle.MutableLiveData
 import com.clj.fastble.BleManager
 import com.clj.fastble.callback.*
 import com.clj.fastble.data.BleDevice
@@ -86,6 +87,8 @@ object BluetoothKit {
     //扫码到的士电蓝牙设备
     private val bleDeviceList = mutableListOf<BleDevice>()
 
+    val bleDeviceLiveData = MutableLiveData<List<BleDevice>>()
+
     //已连接的蓝牙设备，只允许一台外设接入
     private var connectedBleDevice: BleDevice? = null
 
@@ -117,6 +120,7 @@ object BluetoothKit {
     //<editor-fold desc="扫描">
 
     suspend fun scanForDevices(): List<BleDevice> {
+        bleDeviceList.clear()
         return suspendCoroutine { continuation ->
             bleManager.scan(object : BleScanCallback() {
                 override fun onScanStarted(success: Boolean) {
@@ -125,6 +129,10 @@ object BluetoothKit {
 
                 override fun onScanning(bleDevice: BleDevice?) {
                     Log.i(TAG, "onScanning: ${bleDevice?.name ?: "Unknown Device"}")
+                    if (filterDevice(bleDevice?.name ?: "")) {
+                        bleDeviceList.add(bleDevice!!)
+                        bleDeviceLiveData.postValue(bleDeviceList)
+                    }
                 }
 
                 override fun onScanFinished(scanResultList: MutableList<BleDevice>?) {
@@ -133,7 +141,10 @@ object BluetoothKit {
                             scanList.filter { !it.name.isNullOrEmpty() && filterDevice(it.name) }
                         bleDeviceList.clear()
                         bleDeviceList.addAll(validList)
-                        continuation.resume(validList)
+                        try {
+                            continuation.resume(validList)
+                        } catch (exp: Exception) {
+                        }
                         return
                     }
                     continuation.resume(listOf())
@@ -156,6 +167,7 @@ object BluetoothKit {
 
     //<editor-fold desc="连接">
     suspend fun connectForResult(bleDevice: BleDevice): Boolean {
+        cancelScan()
         return suspendCoroutine { continuation ->
             bleManager.connect(bleDevice, object : BleGattCallback() {
                 override fun onStartConnect() {

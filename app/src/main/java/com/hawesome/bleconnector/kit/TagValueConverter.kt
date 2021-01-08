@@ -236,6 +236,21 @@ object TagValueConverter {
     }
 
     /*
+    * 判定本地、远程模式
+    * authority:CtrlMode/9/0/local/1/remote
+    * */
+    fun checkLocalLocked(value: Int, authority: String): Boolean {
+        val infos = authority.split(DeviceModel.ITEM_INFO_SEPARATOR)
+        val bitValue = if (infos[1].toInt() > 0) {
+            if (checkBitIsOne(value, listOf(infos[1]))) 1 else 0
+        } else {
+            value
+        }
+        val index = infos.indexOfFirst { it == bitValue.toString() }
+        return infos[index + 1] == DeviceModel.LOCAL
+    }
+
+    /*
     * 获取items中的首项整数：items[0]="0/off/on"
     * */
     private fun getFirstIntFromItems(items: List<String>?): Int? {

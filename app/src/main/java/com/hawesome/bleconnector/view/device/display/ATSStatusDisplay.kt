@@ -11,6 +11,7 @@ import com.hawesome.bleconnector.kit.TagValueConverter
 import com.hawesome.bleconnector.model.DevicePageItem
 import com.hawesome.bleconnector.model.DeviceStatus
 import com.hawesome.bleconnector.model.Tag
+import com.hawesome.bleconnector.view.BCApplication
 
 class ATSStatusDisplay(
     context: Context,
@@ -19,14 +20,15 @@ class ATSStatusDisplay(
 ) : View(context, attrs), OnTagListener {
 
     companion object {
-        //边界距比例:xWidth,xHeight
-        const val OFFSET_SPACE_RATIO = 0.1f
-        const val SPACE = 20f
-        const val MIN_SPACE = SPACE * 0.7f
-        const val LINE_WIDTH = 4f
 
+        val context = BCApplication.context
+        val SPACE = context.resources.getDimension(R.dimen.cvs_space)
+        val LINE_WIDTH = context.resources.getDimension(R.dimen.cvs_line)
+        val MIN_SPACE = SPACE * 0.7f
         //断路器符号间隙：xHeight
-        const val SWITCH_SPACE_RATIO = 0.15F
+        val SWITCH_SPACE_RATIO = 0.15F
+        //边界距比例:xWidth,xHeight
+        val OFFSET_SPACE_RATIO = 0.1f
 
         //放在companion object,enum class BreakerStatus才可以调用
         var status = ""
@@ -66,7 +68,7 @@ class ATSStatusDisplay(
         //文本：I电，II电
         paint.style = Paint.Style.FILL_AND_STROKE
         paint.textAlign = Paint.Align.CENTER
-        paint.textSize = 30f
+        paint.textSize = context.resources.getDimension(R.dimen.font_body) //30f
         paint.strokeWidth = 2f
         paint.textScaleX = 1.2f
         val verOffset = height * OFFSET_SPACE_RATIO * 0.75f
